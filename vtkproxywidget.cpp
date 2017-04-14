@@ -2,8 +2,9 @@
 #include "eventfilter.h"
 
 #include <vtkImageData.h>
-#include <QVTKWidget.h>
 
+#include <QVTKWidget.h>
+#include <QApplication>
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QGraphicsSceneResizeEvent>
@@ -85,6 +86,17 @@ void VtkProxyWidget::resizeEvent(QGraphicsSceneResizeEvent *event)
 
     if (m_vtkWidget)
         m_vtkWidget->setFixedSize(size().toSize());
+}
+
+void VtkProxyWidget::wheelEvent(QGraphicsSceneWheelEvent *event)
+{
+    if (m_vtkWidget) {
+        QWheelEvent we(event->pos(), event->delta(), event->buttons(), event->modifiers());
+        qApp->sendEvent(m_vtkWidget, &we);
+        return;
+    }
+
+    QGraphicsProxyWidget::wheelEvent(event);
 }
 
 

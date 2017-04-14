@@ -17,6 +17,7 @@ public:
 
 protected:
     void resizeEvent(QGraphicsSceneResizeEvent *event) Q_DECL_OVERRIDE;
+    void wheelEvent(QGraphicsSceneWheelEvent *event) Q_DECL_OVERRIDE;
 
 protected:
     QVTKWidget* m_vtkWidget = nullptr;
