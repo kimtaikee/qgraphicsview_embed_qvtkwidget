@@ -76,7 +76,7 @@ void VtkProxyWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     vtkImageData* imgData = m_vtkWidget->cachedImage();
     QPixmap pixmap = QPixmap::fromImage(vtkImageDataToQImage(imgData));
 
-    painter->drawPixmap(exposedWidgetRect, pixmap);
+    painter->drawPixmap(rect().toRect(), pixmap);
 }
 
 void VtkProxyWidget::resizeEvent(QGraphicsSceneResizeEvent *event)
